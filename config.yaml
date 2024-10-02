@@ -1,0 +1,8 @@
+name: eMail
+  age: 25
+  languages:
+    - English
+    - French
+  address:
+    city: Paris
+    postalCode: 75000
