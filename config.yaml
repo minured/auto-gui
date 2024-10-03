@@ -1,8 +1,6 @@
-name: eMail
-  age: 25
-  languages:
-    - English
-    - French
-  address:
-    city: Paris
-    postalCode: 75000
+mail:
+  sender_email: aaa@bbb.com
+  sender_password: xxxxx
+  smtp_server: smtp.bbb.com
+  smtp_port: 123
+  receiver_email: ccc@ddd.com
