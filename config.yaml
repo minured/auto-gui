@@ -4,3 +4,6 @@ mail:
   smtp_server: smtp.bbb.com
   smtp_port: 123
   receiver_email: ccc@ddd.com
+log:
+  debug: false
+

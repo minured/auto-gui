@@ -19,3 +19,8 @@ def merge_configs(config1, config2):
             else:
                 config1[key] = merge_configs(config1[key], config2[key])
     return config1
+
+
+def snake_to_pascal_case(snake_str):
+    components = snake_str.split('_')
+    return ''.join(x.capitalize() for x in components)
