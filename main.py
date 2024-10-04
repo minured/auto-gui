@@ -1,20 +1,14 @@
-import threading
-import time
-from autoclick import get_xy, auto_Click, switchToWindow
-from tk2 import logger
+import sys
+from PyQt5.QtWidgets import QApplication
 
+from abilities.interface import LogWindow
 
-def startTask():
-    time.sleep(3)
-    switchToWindow('Google Chrome')
-    xy = get_xy("./pic/new-post.png")
-    auto_Click(xy)
-    
 
 def main():
-    threading.Thread(target=startTask).start()
-    logger.start()
-
+    app = QApplication(sys.argv)
+    log_window = LogWindow()
+    log_window.show()
+    sys.exit(app.exec_())
 
 if __name__ == "__main__":
     main()
