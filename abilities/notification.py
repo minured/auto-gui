@@ -13,32 +13,32 @@ class Notification(BaseWorker):
         super().__init__(self)
         self.load_config()
 
-    def send_email(self, message: str, subject='Notification'):
+    def send_email(self, message: str, subject="Notification"):
 
         # 创建邮件
         msg = MIMEMultipart()
-        msg['From'] = self.config['sender_email']
-        msg['To'] = self.config['receiver_email']
-        msg['Subject'] = subject
+        msg["From"] = self.config["sender_email"]
+        msg["To"] = self.config["receiver_email"]
+        msg["Subject"] = subject
 
-        msg.attach(MIMEText(message, 'plain'))
+        msg.attach(MIMEText(message, "plain"))
 
         # 发送邮件
         try:
+            print("send email")
             # 连接到 SMTP 服务器
             self.log("连接邮件服务器...")
-            server = smtplib.SMTP(
-                self.config['smtp_server'], self.config["smtp_port"])
+            server = smtplib.SMTP(self.config["smtp_server"], self.config["smtp_port"])
             server.starttls()  # 启用 TLS 加密
 
             # 登录 SMTP 服务器
-            server.login(self.config['sender_email'],
-                         self.config['sender_password'])
+            server.login(self.config["sender_email"], self.config["sender_password"])
 
             # 发送邮件
             text = msg.as_string()
-            server.sendmail(self.config['sender_email'],
-                            self.config['receiver_email'], text)
+            server.sendmail(
+                self.config["sender_email"], self.config["receiver_email"], text
+            )
             self.log("邮件发送成功！")
 
         except Exception as e:
@@ -49,13 +49,13 @@ class Notification(BaseWorker):
             server.quit()
 
     def load_config(self):
-        file1_path = 'config.local.yaml'
-        file2_path = 'config.yaml'
+        file1_path = "config.local.yaml"
+        file2_path = "config.yaml"
 
         config1 = load_yaml(file1_path) or {}
         config2 = load_yaml(file2_path) or {}
 
-        self.config = (merge_configs(config1, config2))['mail']
+        self.config = (merge_configs(config1, config2))["mail"]
 
-    def notify(self, message: str, subject='Notification'):
+    def notify(self, message: str, subject="Notification"):
         self.send_email(message, subject)

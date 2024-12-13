@@ -3,5 +3,7 @@ psutil==6.1.0
 PyAutoGUI==0.9.54
 PyQt5==5.15.11
 PyQt5_sip==12.16.1
+pywin32==308
+pywinauto==0.6.8
 PyYAML==6.0.2
 PyYAML==6.0.2
