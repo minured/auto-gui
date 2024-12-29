@@ -128,7 +128,7 @@ class LogWindow(QMainWindow):
         if event.key() == Qt.Key_F4:
             self.quit()
 
-    def quit():
+    def quit(self):
         sys.exit()
 
     def showEvent(self, event):

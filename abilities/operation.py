@@ -90,7 +90,7 @@ class Operation(BaseWorker):
             if title_substring.lower() in window_text.lower():
                 win32gui.SetForegroundWindow(hwnd)
                 self.log("切换至 {}".format(title_substring))
-                self.interfaceDelay()
+                self.interfaceDelay(1, 1.2)
                 return False  # 找到后停止枚举
             return True
 
@@ -101,7 +101,7 @@ class Operation(BaseWorker):
         self.log("左击 {}".format(coord))
         x, y = coord
         pyautogui.moveTo(
-            x, y, duration=random.uniform(0.3, 1.2), tween=pyautogui.easeInOutQuad
+            x, y, duration=random.uniform(0.1, 0.3), tween=pyautogui.easeInOutQuad
         )
         pyautogui.click(button="left")
 
@@ -210,8 +210,9 @@ class Operation(BaseWorker):
         mouse.position = xy
         mouse.click(Button.left)
 
-    def interfaceDelay(self):
-        delay = random.uniform(0.8, 2.6)
+    def interfaceDelay(self, min=0.2, max=0.5):
+
+        delay = random.uniform(min, max)
         self.log("wait {}s".format(delay))
         time.sleep(delay)
 
@@ -223,7 +224,7 @@ class Operation(BaseWorker):
     def clickImage(self, img, name):
         xy = self.get_xy(img, name)
         self.click(xy)
-        self.interfaceDelay()
+        self.interfaceDelay(0.08, 0.2)
 
     def input(self, text):
         pyautogui.typewrite(text)
